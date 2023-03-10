@@ -1,0 +1,10 @@
+# ninja log v5
+3	2397	7001224777262189	CMakeFiles/myPongCmake.dir/src/myPongCmake.cpp.obj	79ddcc32c86934a
+11	3848	7001224791719777	CMakeFiles/myPongCmake.dir/src/paddle.cpp.obj	d77574a3e724209e
+1734	2586	7001225280107593	myPongCmake.exe	1f1b3807f6dc9cc
+18	3849	7001224791719777	CMakeFiles/myPongCmake.dir/src/circle.cpp.obj	82cdcdb55ed00e33
+16	1733	7001225272042085	CMakeFiles/myPongCmake.dir/src/algorithm.cpp.obj	4a4adc4957e18ec4
+14	2800	7001238866343295	CMakeFiles/myPongCmake.dir/src/paddle.cpp.obj	472003be007bad25
+6	2808	7001238866393406	CMakeFiles/myPongCmake.dir/src/myPongCmake.cpp.obj	cc79dfac2290be0b
+22	2810	7001238866393406	CMakeFiles/myPongCmake.dir/src/circle.cpp.obj	147c5223ecf2a8bd
+28	2844	7001238866705942	CMakeFiles/myPongCmake.dir/src/algorithm.cpp.obj	fb2b08e8962f6f83

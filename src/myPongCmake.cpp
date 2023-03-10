@@ -1,0 +1,94 @@
+﻿#include <SFML/Graphics.hpp>
+
+#include "paddle.h"
+#include "circle.h"
+#include "algorithm.h"
+#include <iostream>
+
+#include "box2d/b2_math.h"
+#include "box2d/b2_world.h"
+#include "box2d/b2_body.h"
+#include "box2d/b2_polygon_shape.h"
+#include "box2d/b2_fixture.h"
+
+int main()
+{
+    b2Vec2 gravity(0.0f, -10.0f);
+    b2World world(gravity);
+
+    sf::Vector2f sizeWindow(800, 600);
+    sf::Vector2f paddleSize(25, 100);
+
+    sf::RenderWindow window(sf::VideoMode(sizeWindow.x, sizeWindow.y), "My Pong");
+    window.setVerticalSyncEnabled(true);
+
+    Paddle leftPaddle(paddleSize, 3, sf::Color(100, 100, 200), sf::Color::Black);
+    leftPaddle.setSpeed(400.f);
+    leftPaddle.setPosition(10 + paddleSize.x / 2, sizeWindow.y / 2);
+
+    Paddle rightPaddle(paddleSize, 3, sf::Color(100, 100, 200), sf::Color::Black);
+    rightPaddle.setSpeed(400.f);
+    rightPaddle.setPosition(sizeWindow.x - 10 - paddleSize.x / 2, sizeWindow.y / 2);
+
+    Circle circle(10, 3, sf::Color::White, sf::Color::Green);
+    circle.setPosition(sizeWindow.x / 2, sizeWindow.y / 2);
+    circle.setSpeed(-200);
+
+    sf::Clock clock;
+    bool isPlaying = false;
+
+    sf::Font font;
+    if (!font.loadFromFile("C:\\Users\\lea-k\\Desktop\\Visual code\\game\\myPongCmake\\res\\sansation.ttf"))
+        return EXIT_FAILURE;
+
+    sf::Text pauseMessage;
+    pauseMessage.setFont(font);
+    pauseMessage.setCharacterSize(40);
+    pauseMessage.setPosition(170.f, 150.f);
+    pauseMessage.setFillColor(sf::Color::White);
+    pauseMessage.setString("Welcome to SFML pong!\nPress space to start the game");
+
+    Algoritm algoritm(window, leftPaddle, rightPaddle, circle);
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
+                window.close();
+        }
+
+
+        float delta = clock.restart().asSeconds();
+
+
+        // algorithm.update(AItime, delta)
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            // left key is pressed: move our character
+            leftPaddle.move(-delta);
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            // left key is pressed: move our character
+            leftPaddle.move(delta);
+        }
+
+        circle.move(delta);
+
+        //algoritm.update(delta, )
+
+
+        window.clear();
+        window.draw(rightPaddle);
+        window.draw(leftPaddle);
+        window.draw(circle);
+        window.display();
+    }
+
+    return 0;
+}
