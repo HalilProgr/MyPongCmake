@@ -2,6 +2,7 @@
 
 Circle::Circle(float radius, float thickness, const sf::Color& filColor, const sf::Color& OutlineColor):_radius(radius)
 {
+
 	_circle.setRadius(_radius - thickness);
 	_circle.setOutlineThickness(thickness);
 	_circle.setOutlineColor(OutlineColor);

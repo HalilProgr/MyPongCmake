@@ -2,9 +2,19 @@
 
 #include "circle.h"
 #include "paddle.h"
+#include "box2d/b2_world.h"
+#include "box2d/b2_body.h"
+#include "box2d/b2_polygon_shape.h"
 
 class Algoritm {
 	float const PI = std::acos(-1);
+
+	//Math algorithm simulate
+	b2World* world;
+	b2Body* upBound;
+	b2Body* dwBound;
+	b2Body* lfBound;
+	b2Body* rgBound;
 
 	Paddle &_leftPaddle;
 	Paddle &_rightPaddle;
@@ -19,9 +29,6 @@ class Algoritm {
 	const float ballSpeed = 400.f;
 
 	void restartGame();
-	void collisionsWithPaddle();
-
-	void collisionsWithBox();
 
 public:
 	Algoritm(sf::RenderWindow& window,

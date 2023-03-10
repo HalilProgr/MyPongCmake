@@ -1,3 +1,0 @@
-C:/Users/lea-k/Desktop/Visual code/game/myPongCmake/out/build/x86-debug/CMakeFiles/myPongCmake.dir
-C:/Users/lea-k/Desktop/Visual code/game/myPongCmake/out/build/x86-debug/CMakeFiles/edit_cache.dir
-C:/Users/lea-k/Desktop/Visual code/game/myPongCmake/out/build/x86-debug/CMakeFiles/rebuild_cache.dir

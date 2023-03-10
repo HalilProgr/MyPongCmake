@@ -15,10 +15,9 @@
     "",
     "\\inc",
     "\\lib",
-    "\\out",
     "\\res",
     "\\src"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\src\\myPongCmake.cpp",
   "PreviewInSolutionExplorer": false
 }

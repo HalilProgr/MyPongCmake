@@ -1,50 +1,31 @@
 #include "algorithm.h"
 
-void Algoritm::collisionsWithPaddle()
+Algoritm::Algoritm(sf::RenderWindow& window, Paddle& leftPaddle,
+					   Paddle& rightPaddle,  Circle& circle):
+    _window(window), _circle(circle), _leftPaddle(leftPaddle), _rightPaddle(rightPaddle)
 {
+    world = new b2World(b2Vec2(0.0f, 0.0f));
+    b2BodyDef groundBodyDef;
+    b2PolygonShape groundBox;
+    groundBox.SetAsBox(800.0f, 10.0f);
+    groundBodyDef.position.Set(0.0f, -305.0f);
 
-    if (_circle.getPosition().x - _circle.getRadius() < _leftPaddle.getPosition().x + _leftPaddle.getSize().x / 2 &&
-        _circle.getPosition().x - _circle.getRadius() > _leftPaddle.getPosition().x &&
-        _circle.getPosition().y + _circle.getRadius() >= _leftPaddle.getPosition().y - _leftPaddle.getSize().y / 2 &&
-        _circle.getPosition().y - _circle.getRadius() <= _leftPaddle.getPosition().y + _leftPaddle.getSize().y / 2)
-    {
-        if (_circle.getPosition().y > _leftPaddle.getPosition().y)
-            _circle.setAngle(PI - _circle.getAngle() + (std::rand() % 20) * PI / 180);
-        else
-            _circle.setAngle(PI - _circle.getAngle() - (std::rand() % 20) * PI / 180);
+    dwBound = world->CreateBody(&groundBodyDef);
+    dwBound->CreateFixture(&groundBox, 0.0f);
 
-        _circle.setPosition(_leftPaddle.getPosition().x + _circle.getRadius() + _leftPaddle.getSize().x / 2 + 0.1f, _circle.getPosition().y);
-    }
+    groundBodyDef.position.Set(0.0f, 305.0f);
+    upBound = world->CreateBody(&groundBodyDef);
+    upBound->CreateFixture(&groundBox, 0.0f);
 
-    // Right Paddle
-    if (_circle.getPosition().x + _circle.getRadius() > _rightPaddle.getPosition().x - _rightPaddle.getSize().x / 2 &&
-        _circle.getPosition().x + _circle.getRadius() < _rightPaddle.getPosition().x &&
-        _circle.getPosition().y + _circle.getRadius() >= _rightPaddle.getPosition().y - _rightPaddle.getSize().y / 2 &&
-        _circle.getPosition().y - _circle.getRadius() <= _rightPaddle.getPosition().y + _rightPaddle.getSize().y / 2)
-    {
-        if (_circle.getPosition().y > _rightPaddle.getPosition().y)
-            _circle.setAngle(PI - _circle.getAngle() + (std::rand() % 20) * PI / 180);
-        else
-            _circle.setAngle(PI - _circle.getAngle() - (std::rand() % 20) * PI / 180);
+    groundBox.SetAsBox(10.0f, 800.0f);
+    groundBodyDef.position.Set(-405.0f, 0.0f);
+    lfBound = world->CreateBody(&groundBodyDef);
+    lfBound->CreateFixture(&groundBox, 0.0f);
 
-        _circle.setPosition(_leftPaddle.getPosition().x - _circle.getRadius() - _leftPaddle.getSize().x / 2 - 0.1f, _circle.getPosition().y);
-        //ball.setPosition(rightPaddle.getPosition().x - ballRadius - paddleSize.x / 2 - 0.1f, ball.getPosition().y);
-    }
+    groundBodyDef.position.Set(405.0f, 0.0f);
+    rgBound = world->CreateBody(&groundBodyDef);
+    rgBound->CreateFixture(&groundBox, 0.0f);
 
-}
-
-void Algoritm::collisionsWithBox()
-{
-
-
-}
-
-Algoritm::Algoritm(sf::RenderWindow& window,
-					   Paddle& leftPaddle,
-					   Paddle& rightPaddle,
-					   Circle& circle): _window(window), _circle(circle), _leftPaddle(leftPaddle), _rightPaddle(rightPaddle)
-{
-	
 }
 
 void Algoritm::update(float delta, sf::Time Aitime)

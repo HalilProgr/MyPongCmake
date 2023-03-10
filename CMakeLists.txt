@@ -5,7 +5,7 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("myPongCmake")
 
-set(SFML_DIR "C:\\Users\\lea-k\\Desktop\\Visual code\\game\\SFML-2.5.1\\lib\\cmake\\SFML")
+set(SFML_DIR "${myPongCmake_SOURCE_DIR}/../SFML-2.5.1/lib/cmake/SFML")
 
 set(SFML_STATIC_LIBRARIES TRUE)
 find_package(SFML REQUIRED COMPONENTS graphics window system)

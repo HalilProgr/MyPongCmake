@@ -3,8 +3,16 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 
+#include "box2d/b2_world.h"
+#include "box2d/b2_body.h"
+#include "box2d/b2_circle_shape.h"
+
 class Circle {
 	float const PI = std::acos(-1);
+
+	//Math algorithm simulate
+	b2World* _world;
+	b2Body* upBound;
 
 	float _radius = 0;
 	sf::CircleShape  _circle;
@@ -13,8 +21,9 @@ class Circle {
 	float _speed = 0;
 public:
 	Circle(float radius, float thickness,
-		const sf::Color& filColor,
-		const sf::Color& OutlineColor);
+		   const sf::Color& filColor,
+		   const sf::Color& OutlineColor,
+		   b2World* world);
 
 	void setSpeed(float speed);
 	void setPosition(float x, float y);

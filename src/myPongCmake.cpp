@@ -13,8 +13,6 @@
 
 int main()
 {
-    b2Vec2 gravity(0.0f, -10.0f);
-    b2World world(gravity);
 
     sf::Vector2f sizeWindow(800, 600);
     sf::Vector2f paddleSize(25, 100);
@@ -30,13 +28,13 @@ int main()
     rightPaddle.setSpeed(400.f);
     rightPaddle.setPosition(sizeWindow.x - 10 - paddleSize.x / 2, sizeWindow.y / 2);
 
-    Circle circle(10, 3, sf::Color::White, sf::Color::Green);
-    circle.setPosition(sizeWindow.x / 2, sizeWindow.y / 2);
-    circle.setSpeed(-200);
+    Circle ball(10, 3, sf::Color::White, sf::Color::Green);
+    ball.setPosition(sizeWindow.x / 2, sizeWindow.y / 2);
+    ball.setSpeed(-200);
 
     sf::Clock clock;
     bool isPlaying = false;
-
+    /*
     sf::Font font;
     if (!font.loadFromFile("C:\\Users\\lea-k\\Desktop\\Visual code\\game\\myPongCmake\\res\\sansation.ttf"))
         return EXIT_FAILURE;
@@ -47,8 +45,8 @@ int main()
     pauseMessage.setPosition(170.f, 150.f);
     pauseMessage.setFillColor(sf::Color::White);
     pauseMessage.setString("Welcome to SFML pong!\nPress space to start the game");
-
-    Algoritm algoritm(window, leftPaddle, rightPaddle, circle);
+    */
+    Algoritm algoritm(window, leftPaddle, rightPaddle, ball);
 
     while (window.isOpen())
     {
@@ -78,7 +76,7 @@ int main()
             leftPaddle.move(delta);
         }
 
-        circle.move(delta);
+        ball.move(delta);
 
         //algoritm.update(delta, )
 
@@ -86,7 +84,7 @@ int main()
         window.clear();
         window.draw(rightPaddle);
         window.draw(leftPaddle);
-        window.draw(circle);
+        window.draw(ball);
         window.display();
     }
 
