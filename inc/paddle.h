@@ -34,7 +34,7 @@ public:
 	//void setPosition(float x, float y);
 	
 
-	//float getSpeed() const;
+	const b2Vec2& getPosition();
 
 	void update();
 

@@ -22,19 +22,7 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(sizeWindow.x, sizeWindow.y), "My Pong");
     window.setVerticalSyncEnabled(true);
-    /*
-    Paddle leftPaddle(paddleSize, 3, sf::Color(100, 100, 200), sf::Color::Black);
-    leftPaddle.setSpeed(400.f);
-    leftPaddle.setPosition(10 + paddleSize.x / 2, sizeWindow.y / 2);
 
-    Paddle rightPaddle(paddleSize, 3, sf::Color(100, 100, 200), sf::Color::Black);
-    rightPaddle.setSpeed(400.f);
-    rightPaddle.setPosition(sizeWindow.x - 10 - paddleSize.x / 2, sizeWindow.y / 2);
-
-    Circle ball(10, 3, sf::Color::White, sf::Color::Green);
-    ball.setPosition(sizeWindow.x / 2, sizeWindow.y / 2);
-    ball.setSpeed(-200);
-    */
     sf::Clock clock;
     bool isPlaying = false;
 

@@ -15,6 +15,7 @@ class Algoritm {
 
 	Circle _circle;
 	Paddle _leftPaddle;
+	Paddle _rightPaddle;
 
 	sf::RenderWindow& _window;
 	sf::Vector2u sizeWindow = _window.getSize();

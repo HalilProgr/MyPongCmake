@@ -29,6 +29,8 @@ public:
 	Circle(b2World* world, sf::Vector2u sizeWindow);
 
 	void update();
+	
+	const b2Vec2&  getPosition();
 	//void setSpeed(float speed);
 
 	//float getSpeed() const;

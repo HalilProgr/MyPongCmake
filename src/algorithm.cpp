@@ -2,7 +2,9 @@
 
 Algoritm::Algoritm(sf::RenderWindow& window, b2World* world) :
     _window(window), _world(world), _circle(world, window.getSize()),
-    _leftPaddle(world, window.getSize(), sf::Vector2f(40+10,300))
+    _leftPaddle(world, window.getSize(), sf::Vector2f(40+10,300)),
+    _rightPaddle(world, window.getSize(), sf::Vector2f(800 - 40 - 10, 300))
+
 {
     setWall(-5, sizeWindow.y/2, 5, sizeWindow.y / 2);
     setWall(sizeWindow.x + 5, sizeWindow.y / 2, 5, sizeWindow.y / 2);
@@ -12,6 +14,7 @@ Algoritm::Algoritm(sf::RenderWindow& window, b2World* world) :
 
 void Algoritm::update()
 {
+    //Gamer Paddle
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
         _leftPaddle.setSpeed(1000);
@@ -23,11 +26,27 @@ void Algoritm::update()
     else {
         _leftPaddle.setSpeed(0);
     }
+
+    //AI right Paddle
+    if (_rightPaddle.getPosition().y > _circle.getPosition().y)
+    {
+        _rightPaddle.setSpeed(-1000);
+    }
+    else if (_rightPaddle.getPosition().y < _circle.getPosition().y)
+    {
+        _rightPaddle.setSpeed(1000);
+    }
+    else {
+        _rightPaddle.setSpeed(0);
+    }
+
     _circle.update();
     _leftPaddle.update();
+    _rightPaddle.update();
 
     _window.clear();
     _window.draw(_leftPaddle);
+    _window.draw(_rightPaddle);
     _window.draw(_circle);
     _window.display();
 }

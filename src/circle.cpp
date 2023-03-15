@@ -39,6 +39,10 @@ void Circle::update()
 	float y = (_sizeWindow.y - b2_circle->GetPosition().y);
 	_circle.setPosition(x, y);
 }
+const b2Vec2&  Circle::getPosition()
+{
+	return b2_circle->GetPosition();
+}
 /*
 void Circle::setSpeed(float speed)
 {

@@ -9,7 +9,7 @@ Paddle::Paddle(b2World* world, sf::Vector2u sizeWindow, sf::Vector2f position):
 	pl.SetAsBox(size.x/2, size.y/2);
 
 	b2FixtureDef paddleFix;
-	paddleFix.restitution = 1.0f;
+	paddleFix.restitution = 0.0f;
 	paddleFix.density = 1.0f;
 	paddleFix.shape = &pl;
 
@@ -31,6 +31,11 @@ Paddle::Paddle(b2World* world, sf::Vector2u sizeWindow, sf::Vector2f position):
 	_rectangle.setPosition(_position);
 }
 
+
+const b2Vec2& Paddle::getPosition()
+{
+	return b2_Box->GetPosition();
+}
 
 void Paddle::update() {
 	float x = b2_Box->GetPosition().x;
