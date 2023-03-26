@@ -9,6 +9,9 @@
 #include "box2d/b2_fixture.h"
 
 class Paddle {
+
+	float SCALE = 10;
+
 	//box2d
 	b2World* _world;
 	b2Body* b2_Box;
@@ -31,8 +34,7 @@ public:
 	Paddle(b2World* world, sf::Vector2u sizeWindow, sf::Vector2f position);
 
 	void setSpeed(float speed);
-	//void setPosition(float x, float y);
-	
+	void setPosition(sf::Vector2f pos);
 
 	const b2Vec2& getPosition();
 

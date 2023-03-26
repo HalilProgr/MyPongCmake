@@ -11,6 +11,8 @@
 
 class Circle {
 
+	float SCALE = 10;
+
 	//Math algorithm simulate
 	b2World* _world;
 	b2Body*  b2_circle;
@@ -31,9 +33,8 @@ public:
 	void update();
 	
 	const b2Vec2&  getPosition();
-	//void setSpeed(float speed);
-
-	//float getSpeed() const;
+	void setSpeed(b2Vec2 speed);
+	void setPosition(sf::Vector2f pos);
 
 	operator sf::CircleShape()const;
 };

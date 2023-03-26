@@ -13,7 +13,7 @@ Circle::Circle(b2World* world, sf::Vector2u sizeWindow):
 
 	{
 		b2CircleShape shape;
-		shape.m_radius = _radius;
+		shape.m_radius = _radius/SCALE;
 
 		b2FixtureDef ballFixtureDef;
 		ballFixtureDef.restitution = 1.0f;
@@ -24,36 +24,34 @@ Circle::Circle(b2World* world, sf::Vector2u sizeWindow):
 		bd.type = b2_dynamicBody;
 		bd.linearDamping = 0.0f;
 		bd.angularDamping = 0.0f;
-		bd.position.Set(_sizeWindow.x/2, _sizeWindow.y/2);
+		bd.position.Set((_sizeWindow.x/2)/SCALE, (_sizeWindow.y/2)/SCALE);
 
 		b2_circle = _world->CreateBody(&bd);
 		b2_circle->CreateFixture(&ballFixtureDef);
-		b2_circle->ApplyLinearImpulseToCenter(b2Vec2(5000,0),true);
+		b2_circle->ApplyLinearImpulseToCenter(b2Vec2(1000,0),true);
 	}
 }
 
 void Circle::update()
 {
-	//std::cout <<"X: "<< b2_circle->GetPosition().x << " Y: " << b2_circle->GetPosition().y << std::endl;
-	float x = (b2_circle->GetPosition().x);
-	float y = (_sizeWindow.y - b2_circle->GetPosition().y);
+	float x = (b2_circle->GetPosition().x*SCALE);
+	float y = (_sizeWindow.y - b2_circle->GetPosition().y*SCALE);
 	_circle.setPosition(x, y);
 }
 const b2Vec2&  Circle::getPosition()
 {
 	return b2_circle->GetPosition();
 }
-/*
-void Circle::setSpeed(float speed)
+
+void Circle::setSpeed(b2Vec2 speed)
 {
-	//_speed = speed;
+	b2_circle->ApplyLinearImpulseToCenter(speed, true);
 }
 
-void Circle::setPosition(float x, float y)
+void Circle::setPosition(sf::Vector2f pos)
 {
-	//_circle.move
+	b2_circle->SetTransform(b2Vec2(pos.x / SCALE, pos.y / SCALE), 0);
 }
-*/
 
 Circle::operator sf::CircleShape() const
 {

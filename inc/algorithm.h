@@ -7,6 +7,9 @@
 #include "box2d/b2_polygon_shape.h"
 
 class Algoritm {
+
+	float SCALE = 10;
+
 	//main system coordinat
 	// 
 	// 
@@ -29,7 +32,7 @@ class Algoritm {
 	float rightPaddleSpeed = 0.f;
 	const float ballSpeed = 400.f;
 
-	//void restartGame();
+	void restartGame();
 
 	void setWall(int x, int y, int w, int h);
 
