@@ -5,11 +5,11 @@ Circle::Circle(b2World* world, sf::Vector2u sizeWindow):
 {
 
 	// create visualisation 
-	_circle.setRadius(_radius - _thickness);
-	_circle.setOutlineThickness(_thickness);
-	_circle.setOutlineColor(_outlineColor);
-	_circle.setFillColor(_filColor);
-	_circle.setOrigin(sf::Vector2f(_radius, _radius) / 2.f);
+	_circle->setRadius(_radius - _thickness);
+	_circle->setOutlineThickness(_thickness);
+	_circle->setOutlineColor(_outlineColor);
+	_circle->setFillColor(_filColor);
+	_circle->setOrigin(sf::Vector2f(_radius, _radius) / 2.f);
 
 	{
 		b2CircleShape shape;
@@ -28,7 +28,7 @@ Circle::Circle(b2World* world, sf::Vector2u sizeWindow):
 
 		b2_circle = _world->CreateBody(&bd);
 		b2_circle->CreateFixture(&ballFixtureDef);
-		b2_circle->ApplyLinearImpulseToCenter(b2Vec2(1000,0),true);
+		b2_circle->ApplyLinearImpulseToCenter(b2Vec2(50,0),true);
 	}
 }
 
@@ -36,7 +36,8 @@ void Circle::update()
 {
 	float x = (b2_circle->GetPosition().x*SCALE);
 	float y = (_sizeWindow.y - b2_circle->GetPosition().y*SCALE);
-	_circle.setPosition(x, y);
+	_circle->setPosition(x, y);
+	std::cout << b2_circle->GetPosition().x << " " << b2_circle->GetPosition().y << std::endl;
 }
 const b2Vec2&  Circle::getPosition()
 {
@@ -55,7 +56,7 @@ void Circle::setPosition(sf::Vector2f pos)
 
 Circle::operator sf::CircleShape() const
 {
-	return _circle;
+	return *_circle;
 }
 
 

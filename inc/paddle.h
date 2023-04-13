@@ -25,7 +25,7 @@ class Paddle {
 	float _thickness = 3;
 	sf::Color _outlineColor = sf::Color::Black;
 	sf::Color _filColor = sf::Color(100, 100, 200);
-	sf::RectangleShape  _rectangle;
+	std::unique_ptr<sf::RectangleShape> _rectangle = std::make_unique<sf::RectangleShape>();
 	sf::Vector2f		size = sf::Vector2f(20,100);
 
 	//float _speed = 0;

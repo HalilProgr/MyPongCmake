@@ -6,6 +6,8 @@
 #include "box2d/b2_body.h"
 #include "box2d/b2_polygon_shape.h"
 
+#include <thread>
+
 class Algoritm {
 
 	float SCALE = 10;
@@ -27,7 +29,7 @@ class Algoritm {
 	const float tCorSystem = _window.getSize().y;
 
 	sf::Clock AITimer;
-	const sf::Time AITime = sf::seconds(0.1f);
+	const sf::Time AITime = sf::seconds(0.5f);
 	const float paddleSpeed = 400.f;
 	float rightPaddleSpeed = 0.f;
 	const float ballSpeed = 400.f;
@@ -40,5 +42,4 @@ public:
 	Algoritm(sf::RenderWindow& window, b2World* world);
 
 	void update();
-
 };

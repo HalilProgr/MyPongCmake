@@ -3,6 +3,7 @@
 #include "paddle.h"
 #include "circle.h"
 #include "algorithm.h"
+
 #include <iostream>
 
 #include "box2d/b2_math.h"
@@ -18,28 +19,29 @@ int main()
     sf::Vector2f paddleSize(25, 100);
 
     //b2box main object
-    b2World* world = new b2World(b2Vec2(0.0f, 0.0f));
+    std::unique_ptr<b2World> world = std::make_unique<b2World>(b2Vec2(0.0f, 0.0f));
 
     sf::RenderWindow window(sf::VideoMode(sizeWindow.x, sizeWindow.y), "My Pong");
     window.setVerticalSyncEnabled(true);
 
-    sf::Clock clock;
     bool isPlaying = false;
+    
 
-    /*
     sf::Font font;
-    if (!font.loadFromFile("C:\\Users\\lea-k\\Desktop\\Visual code\\game\\myPongCmake\\res\\sansation.ttf"))
+    if (!font.loadFromFile("C:\\Users\\Halil\\Desktop\\VSproject\\game\\MyPongCmake\\res\\sansation.ttf"))
         return EXIT_FAILURE;
 
     sf::Text pauseMessage;
     pauseMessage.setFont(font);
     pauseMessage.setCharacterSize(40);
-    pauseMessage.setPosition(170.f, 150.f);
+    pauseMessage.setPosition(100.f, 150.f);
     pauseMessage.setFillColor(sf::Color::White);
-    pauseMessage.setString("Welcome to SFML pong!\nPress space to start the game");
-    */
+    pauseMessage.setString("Welcome to SFML and Box2d pong!\nPress space to start the game");
+    
+    window.draw(pauseMessage);
+    window.display();
 
-    Algoritm algoritm(window, world);
+    Algoritm algoritm(window, &(*world));
 
     while (window.isOpen())
     {
@@ -49,32 +51,20 @@ int main()
         {
             if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
                 window.close();
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Space)) {
+                if (!isPlaying) {
+                    isPlaying = !isPlaying;
+                }
+            }
         }
 
 
-        float delta = clock.restart().asSeconds();
 
-
-        // algorithm.update(AItime, delta)
-        /*
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        {
-            // left key is pressed: move our character
-            leftPaddle.move(-delta);
+        if (isPlaying) {
+            world->Step(1.0f / 60.0f, 6, 4);
+            algoritm.update();
         }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        {
-            // left key is pressed: move our character
-            leftPaddle.move(delta);
-        }
-
-        ball.move(delta);
-        */
-
-        world->Step(delta, 6, 4);
-
-        algoritm.update();
     }
+
     return 0;
 }

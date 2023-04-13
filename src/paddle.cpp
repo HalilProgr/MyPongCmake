@@ -24,12 +24,12 @@ Paddle::Paddle(b2World* world, sf::Vector2u sizeWindow, sf::Vector2f position):
 	b2_Box->CreateFixture(&paddleFix);
 
 	//SFML
-	_rectangle.setSize(size - sf::Vector2f(_thickness, _thickness));
-	_rectangle.setOutlineThickness(_thickness);
-	_rectangle.setOutlineColor(_outlineColor);
-	_rectangle.setFillColor(_filColor);
-	_rectangle.setOrigin(size / 2.f);
-	_rectangle.setPosition(_position);
+	_rectangle->setSize(size - sf::Vector2f(_thickness, _thickness));
+	_rectangle->setOutlineThickness(3);//_thickness);
+	_rectangle->setOutlineColor(_outlineColor);
+	_rectangle->setFillColor(_filColor);
+	_rectangle->setOrigin(size / 2.f);
+	_rectangle->setPosition(_position);
 }
 
 
@@ -43,7 +43,7 @@ void Paddle::update() {
 	float y = b2_Box->GetPosition().y*SCALE;
 
 
-	_rectangle.setPosition(x, _sizeWindow.y - y);
+	_rectangle->setPosition(x, _sizeWindow.y - y);
 }
 
 void Paddle::setSpeed(float speed) {
@@ -60,6 +60,6 @@ void Paddle::setPosition(sf::Vector2f pos)
 
 Paddle::operator sf::RectangleShape() const
 {
-	return _rectangle;
+	return *_rectangle;
 }
 

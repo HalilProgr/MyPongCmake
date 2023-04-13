@@ -24,7 +24,7 @@ class Circle {
 	sf::Color _filColor = sf::Color(100, 100, 200);
 	float _radius = 10;
 	float _thickness = 3;
-	sf::CircleShape _circle;
+	std::unique_ptr<sf::CircleShape> _circle = std::make_unique<sf::CircleShape>();
 
 	
 public:
